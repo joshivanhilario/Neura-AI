@@ -41,7 +41,7 @@ const Header = () => {
             ))}
           </div>
 
-          <button
+          {/* <button
             aria-label="Menu"
             onClick={toggleMenu}
             className="flex flex-col justify-between items-center w-7 h-7 sm:w-8 sm:h-8 cursor-pointer hover:opacity-80 transition-opacity duration-300 ease-in-out relative"
@@ -49,7 +49,7 @@ const Header = () => {
             <span className={`block h-0.5 bg-[#000000] rounded transition-all duration-300 ${isMenuOpen ? 'rotate-45 absolute top-0' : ''}`}></span>
             <span className={`block h-0.5 bg-[#000000] rounded transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
             <span className={`block h-0.5 bg-[#000000] rounded transition-all duration-300 ${isMenuOpen ? '-rotate-45 absolute bottom-0' : ''}`}></span>
-          </button>
+          </button> */}
         </div>
       </div>
 

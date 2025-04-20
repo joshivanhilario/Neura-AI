@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div>
       <Header />
-      <main className="flex items-center justify-center h-screen">
+      <main className="flex items-center bg-black justify-center h-screen">
         <Image
           className="dark:invert"
           src="/next.svg"

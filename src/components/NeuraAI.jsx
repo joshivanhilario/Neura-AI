@@ -4,7 +4,7 @@ import Image from "next/image";
 import Markdown from "react-markdown";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { Copy, Send, Sparkles } from "lucide-react";
-import UserImg from "../../public/UserProfile.png";
+import UserImg from "../assets/UserProfile.png";
 import Bot from "../assets/ChatBot.png";
 
 const parseContent = (content) => {

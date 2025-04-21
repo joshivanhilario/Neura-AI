@@ -1,21 +1,61 @@
+"use client";
+import React, { useState } from "react";
+import { Heart } from "lucide-react";
+
 const FloatingBtn = () => {
-    return (
-      <a
-        href="#"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="absolute top-2 right-2 md:right-8 z-40"
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <a
+      href="https://github.com/UjjwalSaini07"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Visit Ujjwal's website"
+      className="fixed bottom-4 right-4 md:right-5 z-50"
+    >
+      <div
+        className="relative"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
         <button
           type="button"
-          className="px-6 backdrop-blur-sm hover:px-8 py-2 rounded-full relative dark:bg-neutral-700/50 dark:text-white text-xs md:text-sm hover:shadow-lg hover:shadow-orange-600/[0.2] transition-all duration-300 border border-stone-300 dark:border-neutral-700"
+          className={`flex items-center bg-gradient-to-r from-orange-500 to-red-500 text-white font-medium shadow-lg transition-all duration-300 ease-in-out overflow-hidden active:scale-95
+            ${
+              isHovered
+                ? "w-40 md:w-55 h-8 md:h-12 pr-2 justify-center"
+                : "w-10 h-10 md:w-14 md:h-14 justify-center"
+            }
+            rounded-full group`}
+          style={{
+            boxShadow: isHovered
+              ? "0 8px 20px rgba(255, 87, 34, 0.5)"
+              : "0 4px 10px rgba(255, 87, 34, 0.3)",
+          }}
         >
-          <div className="absolute inset-x-0 h-px w-1/2 mx-auto -top-px shadow-2xl bg-gradient-to-r from-transparent via-orange-500 to-transparent" />
-          <span className="relative z-20">Made By Ujjwal</span>
+          {!isHovered ? (
+            <Heart
+              className={`transition-transform duration-300 ease-in-out ${
+                isHovered ? "scale-110 text-white drop-shadow-md" : "scale-100"
+              }`}
+              size={isHovered ? 28 : 25}
+              aria-hidden="true"
+            />
+          ) : (
+            <span
+              className={`ml-2 whitespace-nowrap text-sm md:text-base font-semibold transition-all duration-300 ease-in-out ${
+                isHovered
+                  ? "opacity-100 scale-100 translate-x-0"
+                  : "opacity-0 scale-90 -translate-x-2"
+              }`}
+            >
+              Made with ❤️ by Ujjwal
+            </span>
+          )}
         </button>
-      </a>
-    );
-  };
-  
-  export default FloatingBtn;
-  
+      </div>
+    </a>
+  );
+};
+
+export default FloatingBtn;

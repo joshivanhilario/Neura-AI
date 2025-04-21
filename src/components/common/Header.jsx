@@ -1,7 +1,6 @@
-
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Orbitron } from "next/font/google";
 
 const orbitron = Orbitron({ subsets: ['latin'], weight: ['400', '900'] });
@@ -10,46 +9,56 @@ const Header = () => {
   const [mode, setMode] = useState("Groq");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  useEffect(() => {
+    const storedMode = localStorage.getItem("mode");
+    if (storedMode) {
+      setMode(storedMode);
+    }
+  }, []);
+
+  const handleModeChange = (newMode) => {
+    setMode(newMode);
+    localStorage.setItem("mode", newMode);
+    window.location.reload();
+  };
+
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <header className="bg-[#0F1113] w-full flex fixed justify-center z-50">
-      <div className="bg-white rounded-full w-full max-w-full mt-4 mx-4 px-5 py-2 flex items-center justify-between shadow-xl border border-gray-300">
-        <h1
-          className={`${orbitron.className} text-black font-extrabold text-xl sm:text-2xl tracking-wider`}
-        >
-          NEURA<span className="text-[#0F1113]">-AI</span>
+    <header className="w-full flex fixed justify-center z-50">
+      <div className="bg-black rounded-full w-full max-w-full mt-1 mx-4 px-5 py-2 flex items-center justify-between shadow-xl">
+        <h1 className={`${orbitron.className} text-white font-extrabold text-xl sm:text-2xl tracking-wider`}>
+          NEURA<span className="text-white">-AI</span>
         </h1>
 
         <div className="flex items-center space-x-4">
-          <div className="flex bg-[#f3f3f3] p-1 rounded-full border border-gray-300 shadow-md">
+          <div className="flex bg-black rounded-full px-1 py-1 border border-gray-600 shadow-md">
             {["Groq", "Gemini"].map((item) => (
               <button
                 key={item}
-                onClick={() => setMode(item)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ease-in-out ${
+                onClick={() => handleModeChange(item)}
+                className={`flex items-center gap-2 px-3 py-2 rounded-full text-sm font-semibold transition-all duration-300 ease-in-out ${
                   mode === item
-                    ? "bg-[#0F1113] text-white shadow-xl transform scale-105"
-                    : "text-[#0F1113] hover:bg-gray-200"
+                    ? "bg-white text-black shadow-xl transform scale-105"
+                    : "text-white hover:bg-gray-900"
                 }`}
               >
                 <span>{item}</span>
                 {mode === item && (
-                  <span className="w-2.5 h-2.5 bg-white rounded-full animate-pulse" />
+                  <span className="w-2.5 h-2.5 bg-black rounded-full animate-pulse" />
                 )}
               </button>
             ))}
           </div>
-
-          <button
+          {/* <button
             aria-label="Menu"
             onClick={toggleMenu}
             className="flex flex-col justify-between items-center w-7 h-7 sm:w-8 sm:h-8 cursor-pointer hover:opacity-80 transition-opacity duration-300 ease-in-out relative"
           >
-            <span className={`block h-0.5 bg-[#000000] rounded transition-all duration-300 ${isMenuOpen ? 'rotate-45 absolute top-0' : ''}`}></span>
-            <span className={`block h-0.5 bg-[#000000] rounded transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
-            <span className={`block h-0.5 bg-[#000000] rounded transition-all duration-300 ${isMenuOpen ? '-rotate-45 absolute bottom-0' : ''}`}></span>
-          </button>
+            <span className={`block h-0.5 bg-white rounded transition-all duration-300 ${isMenuOpen ? 'rotate-45 absolute top-0' : ''}`}></span>
+            <span className={`block h-0.5 bg-white rounded transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
+            <span className={`block h-0.5 bg-white rounded transition-all duration-300 ${isMenuOpen ? '-rotate-45 absolute bottom-0' : ''}`}></span>
+          </button> */}
         </div>
       </div>
 
@@ -68,6 +77,3 @@ const Header = () => {
 };
 
 export default Header;
-
-
-

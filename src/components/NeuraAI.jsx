@@ -244,7 +244,8 @@ const NeuraAI = memo(({ userIp }) => {
         <select
           id="actions-select"
           onChange={(e) => handleSuggestionClick(e.target.value)}
-          className="flex-grow sm:hidden min-w-[180px] max-w-full rounded-lg bg-neutral-800 border border-neutral-700 px-3 py-2 text-neutral-100 focus:ring-1 focus:ring-orange-500 transition"
+          className="flex-grow [@media(max-width:479px)]:hidden sm:hidden min-w-[180px] max-w-full rounded-lg bg-neutral-800 border border-neutral-700 px-3 py-2 text-neutral-100 focus:ring-1 focus:ring-orange-500 transition"
+          // className="flex-grow sm:hidden min-w-[180px] max-w-full rounded-lg bg-neutral-800 border border-neutral-700 px-3 py-2 text-neutral-100 focus:ring-1 focus:ring-orange-500 transition"
           defaultValue=""
         >
           <option value="" disabled>

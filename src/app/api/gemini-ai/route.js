@@ -12,13 +12,12 @@ export async function POST(req) {
     if (!messages || !Array.isArray(messages)) {
       return new Response(
         JSON.stringify({ error: "Invalid messages format. Must be an array." }),
-        { status: 400 }
+        { status: 400, headers: { "Content-Type": "application/json" } }
       );
     }
 
     const model = selectedModel ? google(selectedModel) : google();
-
-    const result = streamText({
+    const result = await streamText({
       model,
       system: "You are a helpful assistant",
       messages,
@@ -28,12 +27,16 @@ export async function POST(req) {
       }),
     });
 
-    return result.toDataStreamResponse();
+    return new Response(result, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   } catch (error) {
     console.error("Error processing the request:", error);
     return new Response(
       JSON.stringify({ error: "Something went wrong while processing your request." }),
-      { status: 500 }
+      { status: 500, headers: { "Content-Type": "application/json" } }
     );
   }
 }

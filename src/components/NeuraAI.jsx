@@ -187,19 +187,19 @@ const NeuraAI = memo(({ userIp }) => {
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="mt-3 flex w-full gap-2 justify-between overflow-x-auto whitespace-nowrap scrollbar-hide text-sm sm:text-base py-1">
+      <div className="mt-2 -mb-2 flex w-full gap-2 justify-between overflow-x-auto whitespace-nowrap scrollbar-hide text-sm sm:text-base py-1">
         <div>
             <select
-            id="model-select"
-            value={selectedModel}
-            onChange={handleModelChange}
-            className="min-w-[180px] shrink-0 mr-2 rounded-2xl bg-neutral-800 border border-neutral-700 px-4 py-2 text-neutral-100 focus:ring-1 focus:ring-orange-500 transition"
-            >
-            {models.map((model) => (
-                <option key={model.value} value={model.value}>
-                {model.label}
-                </option>
-            ))}
+                id="model-select"
+                value={selectedModel}
+                onChange={handleModelChange}
+                className="min-w-[180px] overflow-hidden rounded-lg bg-neutral-800 border border-neutral-700 px-3 py-2 text-neutral-100 focus:ring-1 focus:ring-orange-500 transition"
+                >
+                {models.map((model) => (
+                    <option key={model.value} value={model.value}>
+                    {model.label}
+                    </option>
+                ))}
             </select>
         </div>
 

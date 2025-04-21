@@ -176,64 +176,71 @@ const NeuraAI = memo(({ userIp }) => {
         )}
 
         {error && (
-          <p className="text-red-500 mt-3 font-medium">
-            ⚠ Something went wrong. Try again.
-          </p>
+            <div className="mt-3 px-4 py-3 rounded-lg bg-red-100 text-red-700 border border-red-300 shadow-sm">
+                <p className="font-semibold flex items-center gap-2">
+                <span>❗</span>
+                <span>Oops! An unexpected error occurred. Please try again.</span>
+                </p>
+            </div>
         )}
 
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="mt-3 flex w-full gap-2 overflow-x-auto whitespace-nowrap scrollbar-hide text-sm sm:text-base py-1">
-        <select
-          id="model-select"
-          value={selectedModel}
-          onChange={handleModelChange}
-          className="min-w-[180px] shrink-0 mr-2 rounded-2xl bg-neutral-800 border border-neutral-700 px-4 py-2 text-neutral-100 focus:ring-1 focus:ring-orange-500 transition"
-        >
-          {models.map((model) => (
-            <option key={model.value} value={model.value}>
-              {model.label}
-            </option>
-          ))}
-        </select>
+      <div className="mt-3 flex w-full gap-2 justify-between overflow-x-auto whitespace-nowrap scrollbar-hide text-sm sm:text-base py-1">
+        <div>
+            <select
+            id="model-select"
+            value={selectedModel}
+            onChange={handleModelChange}
+            className="min-w-[180px] shrink-0 mr-2 rounded-2xl bg-neutral-800 border border-neutral-700 px-4 py-2 text-neutral-100 focus:ring-1 focus:ring-orange-500 transition"
+            >
+            {models.map((model) => (
+                <option key={model.value} value={model.value}>
+                {model.label}
+                </option>
+            ))}
+            </select>
+        </div>
 
-        <button
-          onClick={() => handleSuggestionClick("Make it Shorter and simpler.")}
-          className="shrink-0 rounded-full px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
-        >
-          Make Shorter
-        </button>
-        <button
-          onClick={() =>
-            handleSuggestionClick("Make it longer. explain it nicely")
-          }
-          className="shrink-0 rounded-full px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
-        >
-          Make Longer
-        </button>
-        <button
-          onClick={() =>
-            handleSuggestionClick("Write it in a more professional tone.")
-          }
-          className="shrink-0 rounded-full px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
-        >
-          More Professional
-        </button>
-        <button
-          onClick={() =>
-            handleSuggestionClick("Write it in a more casual and light tone.")
-          }
-          className="shrink-0 rounded-full px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
-        >
-          More Casual
-        </button>
-        <button
-          onClick={() => handleSuggestionClick("Paraphrase it")}
-          className="shrink-0 rounded-full px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
-        >
-          Paraphrase
-        </button>
+        <div className="flex gap-1">
+            <button
+            onClick={() => handleSuggestionClick("Make it Shorter and simpler.")}
+            className="shrink-0 rounded-full px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
+            >
+            Make Shorter
+            </button>
+            <button
+            onClick={() =>
+                handleSuggestionClick("Make it longer. explain it nicely")
+            }
+            className="shrink-0 rounded-full px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
+            >
+            Make Longer
+            </button>
+            <button
+            onClick={() =>
+                handleSuggestionClick("Write it in a more professional tone.")
+            }
+            className="shrink-0 rounded-full px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
+            >
+            More Professional
+            </button>
+            <button
+            onClick={() =>
+                handleSuggestionClick("Write it in a more casual and light tone.")
+            }
+            className="shrink-0 rounded-full px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
+            >
+            More Casual
+            </button>
+            <button
+            onClick={() => handleSuggestionClick("Paraphrase it")}
+            className="shrink-0 rounded-full px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
+            >
+            Paraphrase
+            </button>
+        </div>
       </div>
 
       <form onSubmit={handleSubmit} className="mt-4">

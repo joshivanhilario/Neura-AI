@@ -4,6 +4,8 @@ import Image from "next/image";
 import Markdown from "react-markdown";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { Copy, Send, Sparkles } from "lucide-react";
+import UserImg from "../../public/UserProfile.png";
+import Bot from "../assets/ChatBot.png";
 
 const parseContent = (content) => {
   const thinkRegex = /<think>([\s\S]*?)<\/think>/;
@@ -100,187 +102,160 @@ const NeuraAI = memo(({ userIp }) => {
   );
 
   return (
-    <div className="flex h-screen w-full flex-col max-w-7xl mx-auto bg-neutral-900 text-neutral-300">
-      <div className="flex-1 overflow-y-auto rounded-xl bg-neutral-800 p-4 text-sm leading-6 text-neutral-900 sm:text-base sm:leading-7 border border-neutral-700/20 h-full w-full">
+    <div className="flex flex-col h-screen w-full max-w-7xl mx-auto text-neutral-100 px-2 py-2 font-sans">
+      <div className="flex-1 mt-20 overflow-y-auto rounded-2xl bg-neutral-900 p-6 border border-neutral-800 shadow-inner">
         {messages.length > 0 ? (
           messages.map((m) => {
             const { think, rest } = parseContent(m.content);
             return (
-              <div key={m.id} className="whitespace-pre-wrap">
+              <div key={m.id} className="mb-5 mt-2">
                 {m.role === "user" ? (
-                  <div className="flex flex-row px-2 py-4 sm:px-4">
-                    <img
-                      alt="user"
-                      className="mr-2 flex size-6 md:size-8 rounded-full sm:mr-4"
-                      src={getAvatarUrl(userIp)}
-                      width={32}
-                      height={32}
+                  <div className="flex items-start gap-4">
+                    <Image
+                        alt="User profile picture"
+                        src={UserImg || getAvatarUrl(userIp)}
+                        width={36}
+                        height={36}
+                        className="rounded-full shadow-sm"
                     />
-                    <div className="flex max-w-3xl items-center">
-                      <p>{m.content}</p>
+                    <div className="bg-neutral-800 rounded-xl px-5 py-2 max-w-3xl shadow-md border border-neutral-300">
+                      <p className="text-md md:text-base text-neutral-100 leading-relaxed">
+                        {m.content}
+                      </p>
                     </div>
                   </div>
                 ) : (
-                  <div className="mb-4 flex rounded-xl bg-neutral-50 px-2 py-6 dark:bg-neutral-900 sm:px-4 relative">
-                    {/* <Image
-                      alt="groq"
-                      className="mr-2 flex size-6 md:size-8 rounded-full sm:mr-4"
-                      src="123"
-                      placeholder="blur"
-                      width={32}
-                      height={32}
-                    /> */}
-                    <div className="max-w-3xl rounded-xl markdown-body w-full bg-neutral-700 overflow-x-auto">
+                    <div className="flex items-start gap-4">
+                    <Image
+                        alt="User profile picture"
+                        src={Bot}
+                        width={36}
+                        height={36}
+                        className="rounded-full shadow-sm"
+                    />
+                  <div className="relative bg-neutral-800 border border-neutral-300 p-5 rounded-2xl max-w-7xl shadow-md">
+                    <div className="text-neutral-100 text-sm sm:text-base leading-relaxed">
                       {think && (
-                        <div className="text-sm mb-3 p-3 border rounded-lg bg-stone-100 text-stone-600 dark:bg-stone-900 dark:text-stone-400 border-none">
-                          <p className="text-orange-500 animate-pulse p-1">
-                            Thinking...
-                          </p>
+                        <div className="bg-stone-900 border border-stone-700 rounded-lg p-3 text-orange-400">
+                          <p className="font-md mb-1 animate-pulse">Thinking...</p>
                           <Markdown>{think}</Markdown>
                         </div>
                       )}
                       <Markdown>{rest}</Markdown>
                       {responseTimes[m.id] && (
-                        <div className="text-xs text-neutral-500 mt-2">
-                          Response time: {responseTimes[m.id].toFixed(3)}s
-                        </div>
+                        <p className="text-xs text-neutral-500 mt-2">
+                          ⏱ Response time: {responseTimes[m.id].toFixed(3)}s
+                        </p>
                       )}
                     </div>
                     <button
-                      type="button"
-                      title="copy"
-                      className="absolute top-2 right-2 p-1 rounded-full bg-orange-500 dark:bg-neutral-800 transition-all active:scale-95 opacity-50 hover:opacity-75"
+                      title="Copy to clipboard"
+                      className="absolute top-3 right-3 p-2 rounded-full bg-neutral-700 hover:bg-orange-600 transition-all text-white"
                       onClick={() => {
                         navigator.clipboard.writeText(m.content);
                         alert("Copied to clipboard");
                       }}
                     >
-                      <Copy size={19} />
+                      <Copy size={18} />
                     </button>
+                  </div>
                   </div>
                 )}
               </div>
             );
           })
         ) : (
-          <div className="flex flex-col items-center justify-center h-full">
-            <p className="text-xl md:text-2xl px-2 font-semibold text-center mx-auto text-stone-500 dark:text-stone-400 tracking-wide">
-              Start Chatting with
-              <br />
-              <span className="text-orange-500 text-2xl md:text-4xl">Groq</span>
-              .AI Now!
-            </p>
-            {/* <Image
-              src="123"
-              id="pic"
-              alt="ROBO"
-              width={300}
-              className="hover:scale-110 mt-6 transition-all duration-500 active:scale-95"
-            /> */}
+          <div className="flex flex-col items-center justify-center h-full text-center text-stone-400">
+            <p className="text-xl font-medium mb-2">Start chatting with</p>
+            <h1 className="text-4xl font-bold text-orange-500">Groq.AI</h1>
           </div>
         )}
+  
         {isLoading && (
-          <div className="flex items-center gap-2 px-10">
-            <Sparkles size={22} className="animate-pulse" />
-            <span className="bg-linear-to-r bg-[length:200%_200%] animate-bg-pan from-gray-700/40 to-gray-700/40 via-gray-200 bg-clip-text text-transparent">
-              Generating...
-            </span>
+          <div className="flex items-center gap-2 mt-4 text-orange-400 animate-pulse">
+            <Sparkles size={22} />
+            <span>Generating...</span>
           </div>
         )}
+  
         {error && (
-          <p className="text-red-500">Something went wrong! Try Again</p>
+          <p className="text-red-500 mt-3 font-medium">⚠ Something went wrong. Try again.</p>
         )}
+  
         <div ref={messagesEndRef} />
       </div>
-      <div className="mt-2 flex w-full gap-x-2 overflow-x-auto whitespace-nowrap text-xs text-neutral-600 dark:text-neutral-300 sm:text-sm scrollbar-hide shrink-0">
-        <label htmlFor="model-select" className="sr-only">
-          Select Model
-        </label>
+  
+        <div className="mt-3 flex w-full gap-2 overflow-x-auto whitespace-nowrap scrollbar-hide text-sm sm:text-base py-1">
         <select
-          id="model-select"
-          className="block w-full min-w-44 rounded-xl border-none bg-neutral-200 p-4 text-sm text-neutral-900 focus:outline-hidden focus:ring-2 focus:ring-orange-500 dark:bg-neutral-800 dark:text-neutral-200 dark:focus:ring-orange-500 sm:text-base"
-          value={selectedModel}
-          onChange={handleModelChange}
+            id="model-select"
+            value={selectedModel}
+            onChange={handleModelChange}
+            className="min-w-[180px] shrink-0 mr-2 rounded-2xl bg-neutral-800 border border-neutral-700 px-4 py-2 text-neutral-100 focus:ring-1 focus:ring-orange-500 transition"
         >
-          {models.map((model) => (
+            {models.map((model) => (
             <option key={model.value} value={model.value}>
-              {model.label}
+                {model.label}
             </option>
-          ))}
+            ))}
         </select>
+
         <button
-          title="btn"
-          type="button"
-          onClick={() => handleSuggestionClick("Make it Shorter and simpler.")}
-          className="rounded-lg bg-neutral-200 p-2 hover:bg-orange-600 hover:text-neutral-200 dark:bg-neutral-800 dark:hover:bg-orange-600 dark:hover:text-neutral-50 transition-all active:scale-105"
+            onClick={() => handleSuggestionClick("Make it Shorter and simpler.")}
+            className="shrink-0 rounded-full px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
         >
-          Make Shorter
+            Make Shorter
         </button>
         <button
-          type="button"
-          title="btn"
-          onClick={() =>
-            handleSuggestionClick("Make it longer. explain it nicely")
-          }
-          className="rounded-lg bg-neutral-200 p-2 hover:bg-orange-600 hover:text-neutral-200 dark:bg-neutral-800 dark:hover:bg-orange-600 dark:hover:text-neutral-50 transition-all active:scale-105"
+            onClick={() => handleSuggestionClick("Make it longer. explain it nicely")}
+            className="shrink-0 rounded-full px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
         >
-          Make longer
+            Make Longer
         </button>
         <button
-          type="button"
-          title="btn"
-          onClick={() =>
-            handleSuggestionClick("Write it in a more professional tone.")
-          }
-          className="rounded-lg bg-neutral-200 p-2 hover:bg-orange-600 hover:text-neutral-200 dark:bg-neutral-800 dark:hover:bg-orange-600 dark:hover:text-neutral-50 transition-all active:scale-105"
+            onClick={() => handleSuggestionClick("Write it in a more professional tone.")}
+            className="shrink-0 rounded-full px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
         >
-          More professional
+            More Professional
         </button>
         <button
-          type="button"
-          title="btn"
-          onClick={() =>
-            handleSuggestionClick("Write it in a more casual and light tone.")
-          }
-          className="rounded-lg bg-neutral-200 p-2 hover:bg-orange-600 hover:text-neutral-200 dark:bg-neutral-800 dark:hover:bg-orange-600 dark:hover:text-neutral-50 transition-all active:scale-105"
+            onClick={() => handleSuggestionClick("Write it in a more casual and light tone.")}
+            className="shrink-0 rounded-full px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
         >
-          More casual
+            More Casual
         </button>
         <button
-          title="btn"
-          type="button"
-          onClick={() => handleSuggestionClick("Paraphrase it")}
-          className="rounded-lg bg-neutral-200 p-2 hover:bg-orange-600 hover:text-neutral-200 dark:bg-neutral-800 dark:hover:bg-orange-600 dark:hover:text-neutral-50 transition-all active:scale-105"
+            onClick={() => handleSuggestionClick("Paraphrase it")}
+            className="shrink-0 rounded-full px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
         >
-          Paraphrase
+            Paraphrase
         </button>
-      </div>
-      <form className="mt-2" onSubmit={handleSubmit}>
+        </div>
+
+      <form onSubmit={handleSubmit} className="mt-4">
         <div className="relative">
           <textarea
             id="chat-input"
-            className="block caret-orange-600 w-full rounded-xl border-none bg-neutral-200 p-4 pl-2 pr-20 text-sm text-neutral-900 focus:outline-hidden focus:ring-2 focus:ring-orange-500 dark:bg-neutral-800 dark:text-neutral-200 dark:placeholder-neutral-400 dark:focus:ring-orange-500 sm:text-base resize-y"
-            placeholder="Enter your prompt"
             rows={1}
             value={input}
             required
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
+            className="w-full resize-y rounded-xl bg-neutral-800 border border-neutral-500 p-4 pr-24 text-sm text-neutral-100 placeholder-neutral-500 focus:ring-2 focus:ring-orange-500"
+            placeholder="Enter your prompt here..."
           />
           <button
-            title="submit"
             type="submit"
             disabled={isLoading}
-            className="absolute bottom-2 right-2.5 rounded-lg px-4 py-2 text-sm font-medium text-neutral-200 focus:outline-hidden focus:ring-4 focus:ring-orange-300 bg-orange-600 hover:bg-orange-700 dark:focus:ring-orange-800 sm:text-base flex items-center gap-2 active:scale-95 transition-all"
+            className="absolute bottom-4 right-3 px-4 py-2 rounded-lg bg-orange-600 hover:bg-orange-700 text-white text-sm font-medium flex items-center gap-2 transition-all"
           >
             {isLoading ? (
               <>
                 Generating
-                <Sparkles size={22} className="animate-pulse" />
+                <Sparkles size={18} className="animate-pulse" />
               </>
             ) : (
               <>
-                Send <Send size={20} />
+                Send <Send size={18} />
               </>
             )}
           </button>
@@ -288,6 +263,8 @@ const NeuraAI = memo(({ userIp }) => {
       </form>
     </div>
   );
+  
+  
 });
 
 function getAvatarUrl(ip) {

@@ -5,8 +5,10 @@ import Markdown from "react-markdown";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { Copy, Send, Sparkles } from "lucide-react";
 import { useMode } from "../hooks/useMode";
+import { useChatbotSelector } from "../utils/chatbotselector";
 import UserImg from "../assets/UserProfile.png";
 import Bot from "../assets/ChatBot.png";
+import MainBot from "../assets/Bot.png";
 
 const parseContent = (content) => {
   const thinkRegex = /<think>([\s\S]*?)<\/think>/;
@@ -18,7 +20,7 @@ const parseContent = (content) => {
   return { think: thinkContent, rest: restContent };
 };
 
-const models = [
+const groq_models = [
   { value: "meta-llama/llama-4-scout-17b-16e-instruct", label: "🦙 Llama 4 Scout - 17B 16e" },
   { value: "mistral-saba-24b", label: "🌪️ Mistral Saba - 24B" },
   { value: "deepseek-r1-distill-llama-70b", label: "🔍 Deepseek R1 Llama - 70B" },
@@ -30,12 +32,25 @@ const models = [
   { value: "llama3-8b-8192", label: "🦙 Llama 3 - 8B 8192" },
 ];
 
+const gemini_models = [
+  { value: "gemini-1-7b", label: "✨ Gemini 1 - 7B" },
+  { value: "gemini-1-13b", label: "✨ Gemini 1 - 13B" },
+  { value: "gemini-1-34b", label: "✨ Gemini 1 - 34B" },
+  { value: "gemini-2-9b", label: "💎 Gemini 2 - 9B" },
+  { value: "gemini-2-22b", label: "💎 Gemini 2 - 22B" },
+  { value: "gemini-2-70b", label: "💎 Gemini 2 - 70B" },
+  { value: "gemini-lite-2b", label: "🌟 Gemini Lite - 2B" },
+  { value: "gemini-lite-6b", label: "🌟 Gemini Lite - 6B" },
+];
+
+
 const NeuraAI = memo(({ userIp }) => {
   const [selectedModel, setSelectedModel] = useState("llama-3.3-70b-versatile");
   const [responseTimes, setResponseTimes] = useState({});
   const messagesEndRef = useRef(null);
   const startTimeRef = useRef(0);
   const [mode, setMode] = useMode();
+  const { getApiRoute } = useChatbotSelector();
 
   const {
     messages,
@@ -45,8 +60,13 @@ const NeuraAI = memo(({ userIp }) => {
     isLoading,
     error,
   } = useChat({
-    body: {
-      selectedModel,
+    api: getApiRoute(),
+    body: { selectedModel },
+    onSubmit: () => {
+      startTimeRef.current = Date.now();
+    },
+    onError: (err) => {
+      console.error("❌ useChat error:", err);
     },
     onFinish: (message) => {
       const endTime = Date.now();
@@ -165,6 +185,13 @@ const NeuraAI = memo(({ userIp }) => {
           })
         ) : (
           <div className="flex flex-col items-center justify-center h-full text-center text-stone-400">
+            <Image
+              alt="Main Bot picture"
+              src={MainBot}
+              width={200}
+              height={200}
+              className="shadow-sm"
+            />
             <p className="text-xl font-medium mb-2">Start chatting with</p>
             {mode === 'Groq' ? (
                 <h1 className="text-4xl font-bold text-orange-500">Groq.AI</h1>
@@ -182,6 +209,7 @@ const NeuraAI = memo(({ userIp }) => {
         )}
 
         {error && (
+          console.log(error),
             <div className="mt-3 px-4 py-3 rounded-lg bg-red-100 text-red-700 border border-red-300 shadow-sm">
                 <p className="font-semibold flex items-center gap-2">
                 <span>❗</span>
@@ -193,59 +221,82 @@ const NeuraAI = memo(({ userIp }) => {
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="mt-2 -mb-2 flex w-full gap-2 justify-between overflow-x-auto whitespace-nowrap scrollbar-hide text-sm sm:text-base py-1">
-        <div>
-            <select
-                id="model-select"
-                value={selectedModel}
-                onChange={handleModelChange}
-                className="min-w-[180px] overflow-hidden rounded-lg bg-neutral-800 border border-neutral-700 px-3 py-2 text-neutral-100 focus:ring-1 focus:ring-orange-500 transition"
-                >
-                {models.map((model) => (
-                    <option key={model.value} value={model.value}>
-                    {model.label}
-                    </option>
-                ))}
-            </select>
-        </div>
+      <div className="mt-2 -mb-2 flex w-full flex-wrap items-center gap-2 justify-between text-sm sm:text-base py-1">
+        <select
+          id="model-select"
+          value={selectedModel}
+          onChange={handleModelChange}
+          className="flex-grow min-w-[180px] max-w-full rounded-lg bg-neutral-800 border border-neutral-700 px-3 py-2 text-neutral-100 focus:ring-1 focus:ring-orange-500 transition"
+        >
+          {mode === 'Groq'
+            ? groq_models.map((model) => (
+                <option key={model.value} value={model.value}>
+                  {model.label}
+                </option>
+              ))
+            : gemini_models.map((model) => (
+                <option key={model.value} value={model.value}>
+                  {model.label}
+                </option>
+              ))}
+        </select>
 
-        <div className="flex gap-1">
-            <button
-            onClick={() => handleSuggestionClick("Make it Shorter and simpler.")}
-            className="shrink-0 rounded-full px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
-            >
-            Make Shorter
-            </button>
-            <button
-            onClick={() =>
-                handleSuggestionClick("Make it longer. explain it nicely")
-            }
-            className="shrink-0 rounded-full px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
-            >
-            Make Longer
-            </button>
-            <button
-            onClick={() =>
-                handleSuggestionClick("Write it in a more professional tone.")
-            }
-            className="shrink-0 rounded-full px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
-            >
+        <select
+          id="actions-select"
+          onChange={(e) => handleSuggestionClick(e.target.value)}
+          className="flex-grow sm:hidden min-w-[180px] max-w-full rounded-lg bg-neutral-800 border border-neutral-700 px-3 py-2 text-neutral-100 focus:ring-1 focus:ring-orange-500 transition"
+          defaultValue=""
+        >
+          <option value="" disabled>
+            Select Action
+          </option>
+          <option value="Make it Shorter and simpler.">Make Shorter</option>
+          <option value="Make it longer. explain it nicely">Make Longer</option>
+          <option value="Write it in a more professional tone.">
             More Professional
-            </button>
-            <button
-            onClick={() =>
-                handleSuggestionClick("Write it in a more casual and light tone.")
-            }
-            className="shrink-0 rounded-full px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
-            >
+          </option>
+          <option value="Write it in a more casual and light tone.">
             More Casual
-            </button>
-            <button
+          </option>
+          <option value="Paraphrase it">Paraphrase</option>
+        </select>
+
+        {/* Buttons for Larger Screens */}
+        <div className="hidden sm:flex flex-grow gap-2 justify-end">
+          <button
+            onClick={() => handleSuggestionClick("Make it Shorter and simpler.")}
+            className="shrink-0 rounded-lg px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
+          >
+            Make Shorter
+          </button>
+          <button
+            onClick={() => handleSuggestionClick("Make it longer. explain it nicely")}
+            className="shrink-0 rounded-lg px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
+          >
+            Make Longer
+          </button>
+          <button
+            onClick={() =>
+              handleSuggestionClick("Write it in a more professional tone.")
+            }
+            className="shrink-0 rounded-lg px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
+          >
+            More Professional
+          </button>
+          <button
+            onClick={() =>
+              handleSuggestionClick("Write it in a more casual and light tone.")
+            }
+            className="shrink-0 rounded-lg px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
+          >
+            More Casual
+          </button>
+          <button
             onClick={() => handleSuggestionClick("Paraphrase it")}
-            className="shrink-0 rounded-full px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
-            >
+            className="shrink-0 rounded-lg px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
+          >
             Paraphrase
-            </button>
+          </button>
         </div>
       </div>
 

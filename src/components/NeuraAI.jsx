@@ -4,6 +4,7 @@ import Image from "next/image";
 import Markdown from "react-markdown";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { Copy, Send, Sparkles } from "lucide-react";
+import { useMode } from "../hooks/useMode";
 import UserImg from "../assets/UserProfile.png";
 import Bot from "../assets/ChatBot.png";
 
@@ -34,6 +35,7 @@ const NeuraAI = memo(({ userIp }) => {
   const [responseTimes, setResponseTimes] = useState({});
   const messagesEndRef = useRef(null);
   const startTimeRef = useRef(0);
+  const [mode, setMode] = useMode();
 
   const {
     messages,
@@ -164,7 +166,11 @@ const NeuraAI = memo(({ userIp }) => {
         ) : (
           <div className="flex flex-col items-center justify-center h-full text-center text-stone-400">
             <p className="text-xl font-medium mb-2">Start chatting with</p>
-            <h1 className="text-4xl font-bold text-orange-500">Groq.AI</h1>
+            {mode === 'Groq' ? (
+                <h1 className="text-4xl font-bold text-orange-500">Groq.AI</h1>
+            ) : (
+                <h1 className="text-4xl font-bold text-orange-500">Gemini.AI</h1>
+            )}
           </div>
         )}
 

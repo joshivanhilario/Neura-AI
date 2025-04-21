@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Orbitron } from "next/font/google";
 
 const orbitron = Orbitron({ subsets: ['latin'], weight: ['400', '900'] });
@@ -9,14 +9,25 @@ const Header = () => {
   const [mode, setMode] = useState("Groq");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  useEffect(() => {
+    const storedMode = localStorage.getItem("mode");
+    if (storedMode) {
+      setMode(storedMode);
+    }
+  }, []);
+
+  const handleModeChange = (newMode) => {
+    setMode(newMode);
+    localStorage.setItem("mode", newMode);
+    window.location.reload();
+  };
+
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
     <header className="w-full flex fixed justify-center z-50">
       <div className="bg-black rounded-full w-full max-w-full mt-1 mx-4 px-5 py-2 flex items-center justify-between shadow-xl">
-        <h1
-          className={`${orbitron.className} text-white font-extrabold text-xl sm:text-2xl tracking-wider`}
-        >
+        <h1 className={`${orbitron.className} text-white font-extrabold text-xl sm:text-2xl tracking-wider`}>
           NEURA<span className="text-white">-AI</span>
         </h1>
 
@@ -25,7 +36,7 @@ const Header = () => {
             {["Groq", "Gemini"].map((item) => (
               <button
                 key={item}
-                onClick={() => setMode(item)}
+                onClick={() => handleModeChange(item)}
                 className={`flex items-center gap-2 px-3 py-2 rounded-full text-sm font-semibold transition-all duration-300 ease-in-out ${
                   mode === item
                     ? "bg-white text-black shadow-xl transform scale-105"
@@ -39,7 +50,6 @@ const Header = () => {
               </button>
             ))}
           </div>
-
           {/* <button
             aria-label="Menu"
             onClick={toggleMenu}

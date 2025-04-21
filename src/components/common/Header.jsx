@@ -26,7 +26,7 @@ const Header = () => {
 
   return (
     <header className="w-full flex fixed justify-center z-50">
-      <div className="bg-black rounded-full w-full max-w-full mt-1 mx-4 px-5 py-2 flex items-center justify-between shadow-xl">
+      <div className="bg-black rounded-full w-full max-w-full mt-1 px-4 lg:mx-4 lg:px-5 py-2 flex items-center justify-between shadow-xl">
         <h1 className={`${orbitron.className} text-white font-extrabold text-xl sm:text-2xl tracking-wider`}>
           NEURA<span className="text-white">-AI</span>
         </h1>

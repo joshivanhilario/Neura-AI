@@ -8,8 +8,9 @@ import { getUserIp } from "../lib/getUserIp";
 
 const Floating = dynamic(() => import("../components/common/FloatingBtn"));
 
-export default function pageWrapper() {
+export default function PageWrapper() {
   const [userIp, setUserIp] = useState(null);
+  const [isLargeScreen, setIsLargeScreen] = useState(true);
 
   useEffect(() => {
     const fetchUserIp = async () => {
@@ -22,11 +23,19 @@ export default function pageWrapper() {
       }
     };
 
+    const updateScreenSize = () => {
+      setIsLargeScreen(window.innerWidth >= 1080);
+    };
+
     fetchUserIp();
+    updateScreenSize();
     document.body.style.overflow = 'hidden';
+
+    window.addEventListener('resize', updateScreenSize);
 
     return () => {
       document.body.style.overflow = '';
+      window.removeEventListener('resize', updateScreenSize);
     };
   }, []);
 
@@ -36,7 +45,7 @@ export default function pageWrapper() {
 
       <main className="flex flex-1 mt-4 items-center justify-center">
         {userIp && <AI userIp={userIp} />}
-        <Floating />
+        {isLargeScreen && <Floating />}
       </main>
     </div>
   );

@@ -221,65 +221,82 @@ const NeuraAI = memo(({ userIp }) => {
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="mt-2 -mb-2 flex w-full gap-2 justify-between overflow-x-auto whitespace-nowrap scrollbar-hide text-sm sm:text-base py-1">
-        <div>
-          <select
-            id="model-select"
-            value={selectedModel}
-            onChange={handleModelChange}
-            className="min-w-[180px] overflow-hidden rounded-lg bg-neutral-800 border border-neutral-700 px-3 py-2 text-neutral-100 focus:ring-1 focus:ring-orange-500 transition"
-          >
-            {mode === 'Groq'
-              ? groq_models.map((model) => (
-                  <option key={model.value} value={model.value}>
-                    {model.label}
-                  </option>
-                ))
-              : gemini_models.map((model) => (
-                  <option key={model.value} value={model.value}>
-                    {model.label}
-                  </option>
-                ))}
-          </select>
-        </div>
+      <div className="mt-2 -mb-2 flex w-full flex-wrap items-center gap-2 justify-between text-sm sm:text-base py-1">
+        <select
+          id="model-select"
+          value={selectedModel}
+          onChange={handleModelChange}
+          className="flex-grow min-w-[180px] max-w-full rounded-lg bg-neutral-800 border border-neutral-700 px-3 py-2 text-neutral-100 focus:ring-1 focus:ring-orange-500 transition"
+        >
+          {mode === 'Groq'
+            ? groq_models.map((model) => (
+                <option key={model.value} value={model.value}>
+                  {model.label}
+                </option>
+              ))
+            : gemini_models.map((model) => (
+                <option key={model.value} value={model.value}>
+                  {model.label}
+                </option>
+              ))}
+        </select>
 
-        <div className="flex gap-1">
-            <button
-            onClick={() => handleSuggestionClick("Make it Shorter and simpler.")}
-            className="shrink-0 rounded-full px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
-            >
-            Make Shorter
-            </button>
-            <button
-            onClick={() =>
-                handleSuggestionClick("Make it longer. explain it nicely")
-            }
-            className="shrink-0 rounded-full px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
-            >
-            Make Longer
-            </button>
-            <button
-            onClick={() =>
-                handleSuggestionClick("Write it in a more professional tone.")
-            }
-            className="shrink-0 rounded-full px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
-            >
+        <select
+          id="actions-select"
+          onChange={(e) => handleSuggestionClick(e.target.value)}
+          className="flex-grow sm:hidden min-w-[180px] max-w-full rounded-lg bg-neutral-800 border border-neutral-700 px-3 py-2 text-neutral-100 focus:ring-1 focus:ring-orange-500 transition"
+          defaultValue=""
+        >
+          <option value="" disabled>
+            Select Action
+          </option>
+          <option value="Make it Shorter and simpler.">Make Shorter</option>
+          <option value="Make it longer. explain it nicely">Make Longer</option>
+          <option value="Write it in a more professional tone.">
             More Professional
-            </button>
-            <button
-            onClick={() =>
-                handleSuggestionClick("Write it in a more casual and light tone.")
-            }
-            className="shrink-0 rounded-full px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
-            >
+          </option>
+          <option value="Write it in a more casual and light tone.">
             More Casual
-            </button>
-            <button
+          </option>
+          <option value="Paraphrase it">Paraphrase</option>
+        </select>
+
+        {/* Buttons for Larger Screens */}
+        <div className="hidden sm:flex flex-grow gap-2 justify-end">
+          <button
+            onClick={() => handleSuggestionClick("Make it Shorter and simpler.")}
+            className="shrink-0 rounded-lg px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
+          >
+            Make Shorter
+          </button>
+          <button
+            onClick={() => handleSuggestionClick("Make it longer. explain it nicely")}
+            className="shrink-0 rounded-lg px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
+          >
+            Make Longer
+          </button>
+          <button
+            onClick={() =>
+              handleSuggestionClick("Write it in a more professional tone.")
+            }
+            className="shrink-0 rounded-lg px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
+          >
+            More Professional
+          </button>
+          <button
+            onClick={() =>
+              handleSuggestionClick("Write it in a more casual and light tone.")
+            }
+            className="shrink-0 rounded-lg px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
+          >
+            More Casual
+          </button>
+          <button
             onClick={() => handleSuggestionClick("Paraphrase it")}
-            className="shrink-0 rounded-full px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
-            >
+            className="shrink-0 rounded-lg px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
+          >
             Paraphrase
-            </button>
+          </button>
         </div>
       </div>
 

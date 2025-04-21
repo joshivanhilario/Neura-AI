@@ -8,6 +8,7 @@ import { useMode } from "../hooks/useMode";
 import { useChatbotSelector } from "../utils/chatbotselector";
 import UserImg from "../assets/UserProfile.png";
 import Bot from "../assets/ChatBot.png";
+import MainBot from "../assets/Bot.png";
 
 const parseContent = (content) => {
   const thinkRegex = /<think>([\s\S]*?)<\/think>/;
@@ -63,6 +64,9 @@ const NeuraAI = memo(({ userIp }) => {
     body: { selectedModel },
     onSubmit: () => {
       startTimeRef.current = Date.now();
+    },
+    onError: (err) => {
+      console.error("❌ useChat error:", err);
     },
     onFinish: (message) => {
       const endTime = Date.now();
@@ -181,6 +185,13 @@ const NeuraAI = memo(({ userIp }) => {
           })
         ) : (
           <div className="flex flex-col items-center justify-center h-full text-center text-stone-400">
+            <Image
+              alt="Main Bot picture"
+              src={MainBot}
+              width={200}
+              height={200}
+              className="shadow-sm"
+            />
             <p className="text-xl font-medium mb-2">Start chatting with</p>
             {mode === 'Groq' ? (
                 <h1 className="text-4xl font-bold text-orange-500">Groq.AI</h1>
@@ -198,7 +209,7 @@ const NeuraAI = memo(({ userIp }) => {
         )}
 
         {error && (
-          console.log("This is a Error Field : " + error),
+          console.log(error),
             <div className="mt-3 px-4 py-3 rounded-lg bg-red-100 text-red-700 border border-red-300 shadow-sm">
                 <p className="font-semibold flex items-center gap-2">
                 <span>❗</span>

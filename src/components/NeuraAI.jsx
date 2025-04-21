@@ -98,7 +98,7 @@ const NeuraAI = memo(({ userIp }) => {
 
   return (
     <div className="flex flex-col h-screen w-full max-w-7xl mx-auto text-neutral-100 px-2 py-2 font-sans">
-      <div className="flex-1 mt-20 overflow-y-auto rounded-2xl bg-neutral-900 p-6 border border-neutral-800 shadow-inner">
+      <div className="flex-1 mt-15 overflow-y-auto rounded-2xl bg-neutral-900 p-6 border border-neutral-800 shadow-inner">
         {messages.length > 0 ? (
           messages.map((m) => {
             const { think, rest } = parseContent(m.content);

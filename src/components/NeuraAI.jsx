@@ -5,6 +5,8 @@ import Markdown from "react-markdown";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { Copy, Send, Sparkles } from "lucide-react";
 import { useMode } from "../hooks/useMode";
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import { useChatbotSelector } from "../utils/chatbotselector";
 import UserImg from "../assets/UserProfile.png";
 import Bot from "../assets/ChatBot.png";
@@ -43,7 +45,6 @@ const gemini_models = [
   { value: "gemini-lite-6b", label: "🌟 Gemini Lite - 6B" },
 ];
 
-
 const NeuraAI = memo(({ userIp }) => {
   const [selectedModel, setSelectedModel] = useState("llama-3.3-70b-versatile");
   const [responseTimes, setResponseTimes] = useState({});
@@ -67,6 +68,7 @@ const NeuraAI = memo(({ userIp }) => {
     },
     onError: (err) => {
       console.error("❌ useChat error:", err);
+      toast.error("Use Chat API Linkage Error");
     },
     onFinish: (message) => {
       const endTime = Date.now();
@@ -105,6 +107,7 @@ const NeuraAI = memo(({ userIp }) => {
   );
 
   const handleModelChange = useCallback((event) => {
+    toast.success("New Model Added Successfully!!!");
     setSelectedModel(event.target.value);
   }, []);
 
@@ -172,7 +175,7 @@ const NeuraAI = memo(({ userIp }) => {
                         className="absolute top-3 right-3 p-2 rounded-full bg-neutral-700 hover:bg-orange-600 transition-all text-white"
                         onClick={() => {
                           navigator.clipboard.writeText(m.content);
-                          alert("Copied to clipboard");
+                          toast.success("Copied to clipboard!");
                         }}
                       >
                         <Copy size={18} />
@@ -210,10 +213,11 @@ const NeuraAI = memo(({ userIp }) => {
 
         {error && (
           console.log(error),
+          toast.error("Something went Wrong..."),
             <div className="mt-3 px-4 py-3 rounded-lg bg-red-100 text-red-700 border border-red-300 shadow-sm">
                 <p className="font-semibold flex items-center gap-2">
-                <span>❗</span>
-                <span>Oops! An unexpected error occurred. Please try again.</span>
+                  <span>❗</span>
+                  <span>Oops! An unexpected error occurred. Please try again.</span>
                 </p>
             </div>
         )}

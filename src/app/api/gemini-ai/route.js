@@ -10,7 +10,8 @@ export async function POST(req) {
     const { messages, selectedModel } = body;
 
     const result = streamText({
-      model: google(selectedModel || ""),
+      model: google("gemini-1.5-pro-latest"),
+      // model: google(selectedModel || ""),
       system: "You are a helpful assistant",
       messages,
       maxRetries: 3,
@@ -25,7 +26,6 @@ export async function POST(req) {
     return new Response(JSON.stringify({ error: "Something went wrong!" }), { status: 500 });
   }
 }
-
 
 // Todo: Passes all Headers and HTTP Code
 // import { google } from "@ai-sdk/google";

@@ -66,7 +66,8 @@ You can visit the live site here - https://neura-ais.vercel.app/
 - [@Ujjwal Saini](https://github.com/UjjwalSaini07)
 
 ## Screenshots 📷
-![Neura_DemoImage](https://github.com/user-attachments/assets/17ffcf50-d650-4f27-bf7e-0852e561122e)
+![Neura_DemoImage](https://github.com/user-attachments/assets/848ed5a3-e83b-46c0-8044-f3a7bfd82e70)
+
 
 ## Contact 📞
 Feel free to reach out if you have any questions or suggestions!

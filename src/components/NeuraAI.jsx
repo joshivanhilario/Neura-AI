@@ -202,6 +202,8 @@ const NeuraAI = memo(({ userIp }) => {
             ) : (
                 <h1 className="text-4xl font-bold text-orange-500">Gemini.AI</h1>
             )}
+            {/* <p className="text-2xl font-medium text-white">using</p>
+            <h1 className="text-4xl font-bold text-green-600">Neura-AI</h1> */}
           </div>
         )}
 

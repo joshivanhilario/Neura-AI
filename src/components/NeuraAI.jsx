@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useChatbotSelector } from "../utils/chatbotselector";
 import UserImg from "../assets/UserProfile.png";
 import Bot from "../assets/ChatBot.png";
-import MainBot from "../assets/Bot.png";
+import MainBot from "../assets/BotMain.gif";
 
 const parseContent = (content) => {
   const thinkRegex = /<think>([\s\S]*?)<\/think>/;
@@ -188,12 +188,12 @@ const NeuraAI = memo(({ userIp }) => {
             );
           })
         ) : (
-          <div className="flex flex-col items-center justify-center h-full text-center text-stone-400">
+          <div className="flex flex-col -mt-8 items-center justify-center h-full text-center text-stone-400">
             <Image
               alt="Main Bot picture"
               src={MainBot}
-              width={200}
-              height={200}
+              width={350}
+              height={350}
               className="shadow-sm"
             />
             <p className="text-xl font-medium mb-2">Start chatting with</p>

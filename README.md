@@ -1,6 +1,6 @@
 # Neura-AI
 ### Experience the Future of Conversational AI 🌟
-Step into the realm of cutting-edge technology with our ultra-fast chatbot, powered by AI SDK, Groq AI, and Gemini AI. Crafted for lightning-fast performance and infused with human-like intelligence, it delivers seamless, intuitive conversations that feel natural and effortless. Perfectly suited for real-time applications such as customer support, virtual assistants, and interactive experiences, this advanced chatbot sets a new benchmark for digital communication, redefining the way you connect with technology. 🚀
+Step into the future of communication with our ultra-fast chatbot, powered by AI SDK, Groq AI, and Gemini AI. Designed for speed and intelligence, it offers natural, human-like conversations that feel effortless. With built-in **speech-to-text**, you can easily interact using your voice and get instant, accurate responses. Ideal for customer support, virtual assistants, and interactive applications, this chatbot redefines how you connect with technology. 🚀
 
 [![Github License](https://img.shields.io/github/license/UjjwalSaini07/Neura-AI)](https://github.com/UjjwalSaini07/Neura-AI/blob/main/LICENSE)
 [![Info](https://img.shields.io/badge/Project-Info-blue?style=flat&logo=data:image/svg%2bxml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBhdGggc3R5bGU9ImZpbGw6IzBBNEVBRjsiIGQ9Ik0yNTYsNTEyYy02OC4zOCwwLTEzMi42NjctMjYuNjI5LTE4MS4wMi03NC45OEMyNi42MjksMzg4LjY2NywwLDMyNC4zOCwwLDI1Ng0KCVMyNi42MjksMTIzLjMzMyw3NC45OCw3NC45OEMxMjMuMzMzLDI2LjYyOSwxODcuNjIsMCwyNTYsMHMxMzIuNjY3LDI2LjYyOSwxODEuMDIsNzQuOThDNDg1LjM3MSwxMjMuMzMzLDUxMiwxODcuNjIsNTEyLDI1Ng0KCXMtMjYuNjI5LDEzMi42NjctNzQuOTgsMTgxLjAyQzM4OC42NjcsNDg1LjM3MSwzMjQuMzgsNTEyLDI1Niw1MTJ6Ii8+DQo8cGF0aCBzdHlsZT0iZmlsbDojMDYzRThCOyIgZD0iTTQzNy4wMiw3NC45OEMzODguNjY3LDI2LjYyOSwzMjQuMzgsMCwyNTYsMHY1MTJjNjguMzgsMCwxMzIuNjY3LTI2LjYyOSwxODEuMDItNzQuOTgNCglDNDg1LjM3MSwzODguNjY3LDUxMiwzMjQuMzgsNTEyLDI1NlM0ODUuMzcxLDEyMy4zMzMsNDM3LjAyLDc0Ljk4eiIvPg0KPHBhdGggc3R5bGU9ImZpbGw6I0ZGRkZGRjsiIGQ9Ik0yNTYsMTg1Yy0zMC4zMjcsMC01NS0yNC42NzMtNTUtNTVzMjQuNjczLTU1LDU1LTU1czU1LDI0LjY3Myw1NSw1NVMyODYuMzI3LDE4NSwyNTYsMTg1eiBNMzAxLDM5NQ0KCVYyMTVIMTkxdjMwaDMwdjE1MGgtMzB2MzBoMTQwdi0zMEgzMDF6Ii8+DQo8Zz4NCgk8cGF0aCBzdHlsZT0iZmlsbDojQ0NFRkZGOyIgZD0iTTI1NiwxODVjMzAuMzI3LDAsNTUtMjQuNjczLDU1LTU1cy0yNC42NzMtNTUtNTUtNTVWMTg1eiIvPg0KCTxwb2x5Z29uIHN0eWxlPSJmaWxsOiNDQ0VGRkY7IiBwb2ludHM9IjMwMSwzOTUgMzAxLDIxNSAyNTYsMjE1IDI1Niw0MjUgMzMxLDQyNSAzMzEsMzk1IAkiLz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K)](https://github.com/UjjwalSaini07/Neura-AI/blob/main/README.md)
@@ -9,13 +9,13 @@ Step into the realm of cutting-edge technology with our ultra-fast chatbot, powe
 [![Github Release](https://img.shields.io/github/v/release/UjjwalSaini07/Neura-AI)](https://github.com/UjjwalSaini07/Neura-AI)
 
 ## Key Feature 🎯
-- ⚡ Blazing-fast performance with Groq AI and AI SDK for instant, real-time responses.
-- 🤖 Human-like conversational intelligence powered by Gemini AI for seamless and natural interactions.
-- 🌟 Adaptive learning capabilities, constantly evolving to deliver smarter and more accurate conversations.
-- 🌍 Versatile use cases, including customer support, virtual assistants, gaming, and beyond, tailored to diverse needs.
-- 📈 Scalable design to effortlessly handle high user volumes, making it perfect for growing businesses.
-- 🔒 Robust security features to ensure data privacy, safe communication, and compliance with industry standards.
-- 🔧 Easy integration with customizable workflows, along with the flexibility to shift between different Groq and Gemini AI models to meet your unique requirements.
+- ⚡ Blazing-fast performance with Groq AI and the AI SDK for instant, real-time responses.
+- 🎙️ Integrated speech-to-text capabilities for seamless voice communication and instant answers.
+- 🤖 Powered by Gemini AI for natural, human-like conversational intelligence and adaptive learning.
+- 🌍 Versatile for various use cases like customer support, virtual assistants, and gaming.
+- 📈 Scalable design effortlessly handles high user volumes, ideal for growing businesses.
+- 🔒 Robust security ensures data privacy, compliance, and safe communication.
+- 🔧 Easy integration with customizable workflows and flexible Groq and Gemini AI model options.
 
 ## Demo 🖥️
 You can visit the live site here - https://neura-ais.vercel.app/
@@ -54,6 +54,17 @@ You can visit the live site here - https://neura-ais.vercel.app/
     pnpm install
 ```
 
+### Project Setup Using Docker Containerization:
+1. Start the Docker Engine Locally
+2. Navigate to the project Root directory:
+```bash
+    cd Neura-AI
+```
+3. Run DockerFile:
+```bash
+    docker-compose up --build
+```
+
 ## Start the web app 🖥️
 - Start the Frontend Development server
 ```bash
@@ -67,7 +78,6 @@ You can visit the live site here - https://neura-ais.vercel.app/
 
 ## Screenshots 📷
 ![Neura_DemoImage](https://github.com/user-attachments/assets/848ed5a3-e83b-46c0-8044-f3a7bfd82e70)
-
 
 ## Contact 📞
 Feel free to reach out if you have any questions or suggestions!

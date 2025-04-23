@@ -4,8 +4,9 @@ import Image from "next/image";
 import Markdown from "react-markdown";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { ShimmerButton } from "./magicui/shimmer-button";
-import { Copy, Send, Mic, Sparkles } from "lucide-react";
+import { Copy, Send, Mic, MicOff, Sparkles } from "lucide-react";
 import { useMode } from "../hooks/useMode";
+import { useSpeechRecognition } from "../hooks/useSpeechRecognition";
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useChatbotSelector } from "../utils/chatbotselector";
@@ -49,10 +50,12 @@ const gemini_models = [
 const NeuraAI = memo(({ userIp }) => {
   const [selectedModel, setSelectedModel] = useState("llama-3.3-70b-versatile");
   const [responseTimes, setResponseTimes] = useState({});
+  const [inputValue, setInputValue] = useState("");
   const messagesEndRef = useRef(null);
   const startTimeRef = useRef(0);
   const [mode, setMode] = useMode();
   const { getApiRoute } = useChatbotSelector();
+  const { transcript, isListening, toggleListening } = useSpeechRecognition();
 
   const {
     messages,
@@ -83,11 +86,24 @@ const NeuraAI = memo(({ userIp }) => {
 
   const handleSubmit = useCallback(
     (e) => {
+      // e.preventDefault();
+      const contentToSubmit = isListening && transcript ? transcript : input;
+      if (!contentToSubmit.trim()) return;
+  
+      handleInputChange({ target: { value: contentToSubmit } });
       startTimeRef.current = Date.now();
       originalHandleSubmit(e);
+  
+      if (isListening) toggleListening();
     },
-    [originalHandleSubmit]
+    [isListening, transcript, input, handleInputChange, originalHandleSubmit, toggleListening]
   );
+  
+  useEffect(() => {
+    if (!isListening && transcript) {
+      setInputValue(transcript);
+    }
+  }, [isListening, transcript]);
 
   const scrollToBottom = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -202,6 +218,8 @@ const NeuraAI = memo(({ userIp }) => {
             ) : (
                 <h1 className="text-4xl font-bold text-orange-500">Gemini.AI</h1>
             )}
+            {/* <p className="text-2xl font-medium text-white">using</p>
+            <h1 className="text-4xl font-bold text-green-600">Neura-AI</h1> */}
           </div>
         )}
 
@@ -262,7 +280,6 @@ const NeuraAI = memo(({ userIp }) => {
           <option value="Paraphrase it">Paraphrase</option>
         </select>
 
-        {/* Buttons for Larger Screens */}
         <div className="hidden sm:flex flex-grow gap-2 justify-end">
           <ShimmerButton
             shimmerColor="#FB8C00"
@@ -327,20 +344,21 @@ const NeuraAI = memo(({ userIp }) => {
           <textarea
             id="chat-input"
             rows={1}
-            value={input}
+            value={isListening ? transcript : input}
             required
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
-            className="w-full resize-y rounded-xl bg-neutral-800 border border-neutral-500 p-4 pr-24 text-sm text-neutral-100 placeholder-neutral-500 focus:ring-2 focus:ring-orange-500"
+            className="w-full resize-y rounded-xl overflow-auto bg-neutral-800 border border-neutral-500 p-4 pr-24 text-sm text-neutral-100 placeholder-neutral-500 focus:ring-2 focus:ring-orange-500"
             placeholder="Enter your prompt here..."
           />
             <div className="absolute bottom-4 right-4 flex items-center space-x-2">
               <button
                 disabled={isLoading}
+                onClick={toggleListening}
                 className="px-4 py-2 rounded-lg bg-orange-600 hover:bg-orange-700 text-white text-sm font-medium flex items-center gap-2 transition-all"
                 type="button"
               >
-                <Mic size={18} />
+                {isListening ? <MicOff size={18} /> : <Mic size={18} /> }
               </button>
               <button
                 type="submit"

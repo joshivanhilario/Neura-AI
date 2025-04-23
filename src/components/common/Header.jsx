@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { Orbitron } from "next/font/google";
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const orbitron = Orbitron({ subsets: ['latin'], weight: ['400', '900'] });
 
@@ -19,7 +21,11 @@ const Header = () => {
   const handleModeChange = (newMode) => {
     setMode(newMode);
     localStorage.setItem("mode", newMode);
-    window.location.reload();
+    toast.success("Mode Changed Successfully!!!");
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
   };
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);

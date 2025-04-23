@@ -3,12 +3,15 @@ import { useChat } from "ai/react";
 import Image from "next/image";
 import Markdown from "react-markdown";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
-import { Copy, Send, Sparkles } from "lucide-react";
+import { ShimmerButton } from "./magicui/shimmer-button";
+import { Copy, Send, Mic, Sparkles } from "lucide-react";
 import { useMode } from "../hooks/useMode";
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import { useChatbotSelector } from "../utils/chatbotselector";
 import UserImg from "../assets/UserProfile.png";
 import Bot from "../assets/ChatBot.png";
-import MainBot from "../assets/Bot.png";
+import MainBot from "../assets/BotMain.gif";
 
 const parseContent = (content) => {
   const thinkRegex = /<think>([\s\S]*?)<\/think>/;
@@ -43,7 +46,6 @@ const gemini_models = [
   { value: "gemini-lite-6b", label: "🌟 Gemini Lite - 6B" },
 ];
 
-
 const NeuraAI = memo(({ userIp }) => {
   const [selectedModel, setSelectedModel] = useState("llama-3.3-70b-versatile");
   const [responseTimes, setResponseTimes] = useState({});
@@ -67,6 +69,7 @@ const NeuraAI = memo(({ userIp }) => {
     },
     onError: (err) => {
       console.error("❌ useChat error:", err);
+      toast.error("Use Chat API Linkage Error");
     },
     onFinish: (message) => {
       const endTime = Date.now();
@@ -105,6 +108,7 @@ const NeuraAI = memo(({ userIp }) => {
   );
 
   const handleModelChange = useCallback((event) => {
+    toast.success("New Model Added Successfully!!!");
     setSelectedModel(event.target.value);
   }, []);
 
@@ -144,7 +148,7 @@ const NeuraAI = memo(({ userIp }) => {
                 ) : (
                   <div className="flex items-start gap-4">
                     <Image
-                      alt="User profile picture"
+                      alt="Bot Image"
                       src={Bot}
                       width={36}
                       height={36}
@@ -172,7 +176,7 @@ const NeuraAI = memo(({ userIp }) => {
                         className="absolute top-3 right-3 p-2 rounded-full bg-neutral-700 hover:bg-orange-600 transition-all text-white"
                         onClick={() => {
                           navigator.clipboard.writeText(m.content);
-                          alert("Copied to clipboard");
+                          toast.success("Copied to clipboard!");
                         }}
                       >
                         <Copy size={18} />
@@ -184,12 +188,12 @@ const NeuraAI = memo(({ userIp }) => {
             );
           })
         ) : (
-          <div className="flex flex-col items-center justify-center h-full text-center text-stone-400">
+          <div className="flex flex-col -mt-8 items-center justify-center h-full text-center text-stone-400">
             <Image
               alt="Main Bot picture"
               src={MainBot}
-              width={200}
-              height={200}
+              width={350}
+              height={350}
               className="shadow-sm"
             />
             <p className="text-xl font-medium mb-2">Start chatting with</p>
@@ -210,10 +214,11 @@ const NeuraAI = memo(({ userIp }) => {
 
         {error && (
           console.log(error),
+          toast.error("Something went Wrong..."),
             <div className="mt-3 px-4 py-3 rounded-lg bg-red-100 text-red-700 border border-red-300 shadow-sm">
                 <p className="font-semibold flex items-center gap-2">
-                <span>❗</span>
-                <span>Oops! An unexpected error occurred. Please try again.</span>
+                  <span>❗</span>
+                  <span>Oops! An unexpected error occurred. Please try again.</span>
                 </p>
             </div>
         )}
@@ -245,7 +250,6 @@ const NeuraAI = memo(({ userIp }) => {
           id="actions-select"
           onChange={(e) => handleSuggestionClick(e.target.value)}
           className="flex-grow [@media(max-width:479px)]:hidden sm:hidden min-w-[180px] max-w-full rounded-lg bg-neutral-800 border border-neutral-700 px-3 py-2 text-neutral-100 focus:ring-1 focus:ring-orange-500 transition"
-          // className="flex-grow sm:hidden min-w-[180px] max-w-full rounded-lg bg-neutral-800 border border-neutral-700 px-3 py-2 text-neutral-100 focus:ring-1 focus:ring-orange-500 transition"
           defaultValue=""
         >
           <option value="" disabled>
@@ -253,51 +257,68 @@ const NeuraAI = memo(({ userIp }) => {
           </option>
           <option value="Make it Shorter and simpler.">Make Shorter</option>
           <option value="Make it longer. explain it nicely">Make Longer</option>
-          <option value="Write it in a more professional tone.">
-            More Professional
-          </option>
-          <option value="Write it in a more casual and light tone.">
-            More Casual
-          </option>
+          <option value="Write it in a more professional tone.">More Professional</option>
+          <option value="Write it in a more casual and light tone.">More Casual</option>
           <option value="Paraphrase it">Paraphrase</option>
         </select>
 
         {/* Buttons for Larger Screens */}
         <div className="hidden sm:flex flex-grow gap-2 justify-end">
-          <button
-            onClick={() => handleSuggestionClick("Make it Shorter and simpler.")}
+          <ShimmerButton
+            shimmerColor="#FB8C00"
+            shimmerDuration="3s"
             className="shrink-0 rounded-lg px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
+            onClick={() => {
+              toast.info("We've made this description shorter and easier to understand!");
+              handleSuggestionClick("Make it Shorter and simpler.");
+            }}
           >
             Make Shorter
-          </button>
-          <button
-            onClick={() => handleSuggestionClick("Make it longer. explain it nicely")}
+          </ShimmerButton>
+          <ShimmerButton
+            shimmerColor="#FB8C00"
+            shimmerDuration="3s"
             className="shrink-0 rounded-lg px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
+            onClick={() => {
+              toast.info("We've made this description Longer!");
+              handleSuggestionClick("Make it longer. explain it nicely");
+            }}
           >
             Make Longer
-          </button>
-          <button
-            onClick={() =>
-              handleSuggestionClick("Write it in a more professional tone.")
-            }
+          </ShimmerButton>
+          <ShimmerButton
+            shimmerColor="#FB8C00"
+            shimmerDuration="3s"
             className="shrink-0 rounded-lg px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
+            onClick={() => {
+              toast.info("The description has been refined for brevity and clarity.");
+              handleSuggestionClick("Write it in a more professional tone.");
+            }}
           >
             More Professional
-          </button>
-          <button
-            onClick={() =>
-              handleSuggestionClick("Write it in a more casual and light tone.")
-            }
+          </ShimmerButton>
+          <ShimmerButton
+            shimmerColor="#FB8C00"
+            shimmerDuration="3s"
             className="shrink-0 rounded-lg px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
+            onClick={() => {
+              toast.info("Here's a shorter and informal version for you!");
+              handleSuggestionClick("Write it in a more casual and light tone.");
+            }}
           >
             More Casual
-          </button>
-          <button
-            onClick={() => handleSuggestionClick("Paraphrase it")}
+          </ShimmerButton>
+          <ShimmerButton
+            shimmerColor="#FB8C00"
+            shimmerDuration="3s"
             className="shrink-0 rounded-lg px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
+            onClick={() => {
+              toast.info("This version is quicker to read and simpler to understand!");
+              handleSuggestionClick("Paraphrase it in humanly langugage");
+            }}
           >
             Paraphrase
-          </button>
+          </ShimmerButton>
         </div>
       </div>
 
@@ -313,22 +334,31 @@ const NeuraAI = memo(({ userIp }) => {
             className="w-full resize-y rounded-xl bg-neutral-800 border border-neutral-500 p-4 pr-24 text-sm text-neutral-100 placeholder-neutral-500 focus:ring-2 focus:ring-orange-500"
             placeholder="Enter your prompt here..."
           />
-          <button
-            type="submit"
-            disabled={isLoading}
-            className="absolute bottom-4 right-3 px-4 py-2 rounded-lg bg-orange-600 hover:bg-orange-700 text-white text-sm font-medium flex items-center gap-2 transition-all"
-          >
-            {isLoading ? (
-              <>
-                Generating
-                <Sparkles size={18} className="animate-pulse" />
-              </>
-            ) : (
-              <>
-                Send <Send size={18} />
-              </>
-            )}
-          </button>
+            <div className="absolute bottom-4 right-4 flex items-center space-x-2">
+              <button
+                disabled={isLoading}
+                className="px-4 py-2 rounded-lg bg-orange-600 hover:bg-orange-700 text-white text-sm font-medium flex items-center gap-2 transition-all"
+                type="button"
+              >
+                <Mic size={18} />
+              </button>
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="px-4 py-2 rounded-lg bg-orange-600 hover:bg-orange-700 text-white text-sm font-medium flex items-center gap-2 transition-all"
+              >
+                {isLoading ? (
+                  <>
+                    Generating
+                    <Sparkles size={18} className="animate-pulse" />
+                  </>
+                ) : (
+                  <>
+                    Send <Send size={18} />
+                  </>
+                )}
+              </button>
+            </div>
         </div>
       </form>
     </div>

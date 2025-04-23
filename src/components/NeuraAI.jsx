@@ -280,7 +280,6 @@ const NeuraAI = memo(({ userIp }) => {
           <option value="Paraphrase it">Paraphrase</option>
         </select>
 
-        {/* Buttons for Larger Screens */}
         <div className="hidden sm:flex flex-grow gap-2 justify-end">
           <ShimmerButton
             shimmerColor="#FB8C00"

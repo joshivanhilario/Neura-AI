@@ -268,7 +268,10 @@ const NeuraAI = memo(({ userIp }) => {
             shimmerColor="#FB8C00"
             shimmerDuration="3s"
             className="shrink-0 rounded-lg px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
-            onClick={() => handleSuggestionClick("Make it Shorter and simpler.")}
+            onClick={() => {
+              toast.info("We've made this description shorter and easier to understand!");
+              handleSuggestionClick("Make it Shorter and simpler.");
+            }}
           >
             Make Shorter
           </ShimmerButton>
@@ -276,7 +279,10 @@ const NeuraAI = memo(({ userIp }) => {
             shimmerColor="#FB8C00"
             shimmerDuration="3s"
             className="shrink-0 rounded-lg px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
-            onClick={() => handleSuggestionClick("Make it longer. explain it nicely")}
+            onClick={() => {
+              toast.info("We've made this description Longer!");
+              handleSuggestionClick("Make it longer. explain it nicely");
+            }}
           >
             Make Longer
           </ShimmerButton>
@@ -284,7 +290,10 @@ const NeuraAI = memo(({ userIp }) => {
             shimmerColor="#FB8C00"
             shimmerDuration="3s"
             className="shrink-0 rounded-lg px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
-            onClick={() => handleSuggestionClick("Write it in a more professional tone.")}
+            onClick={() => {
+              toast.info("The description has been refined for brevity and clarity.");
+              handleSuggestionClick("Write it in a more professional tone.");
+            }}
           >
             More Professional
           </ShimmerButton>
@@ -292,7 +301,10 @@ const NeuraAI = memo(({ userIp }) => {
             shimmerColor="#FB8C00"
             shimmerDuration="3s"
             className="shrink-0 rounded-lg px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
-            onClick={() => handleSuggestionClick("Write it in a more casual and light tone.")}
+            onClick={() => {
+              toast.info("Here's a shorter and informal version for you!");
+              handleSuggestionClick("Write it in a more casual and light tone.");
+            }}
           >
             More Casual
           </ShimmerButton>
@@ -300,7 +312,10 @@ const NeuraAI = memo(({ userIp }) => {
             shimmerColor="#FB8C00"
             shimmerDuration="3s"
             className="shrink-0 rounded-lg px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
-            onClick={() => handleSuggestionClick("Paraphrase it in humanly langugage")}
+            onClick={() => {
+              toast.info("This version is quicker to read and simpler to understand!");
+              handleSuggestionClick("Paraphrase it in humanly langugage");
+            }}
           >
             Paraphrase
           </ShimmerButton>

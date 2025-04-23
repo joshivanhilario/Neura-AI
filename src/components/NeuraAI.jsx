@@ -147,7 +147,7 @@ const NeuraAI = memo(({ userIp }) => {
                 ) : (
                   <div className="flex items-start gap-4">
                     <Image
-                      alt="User profile picture"
+                      alt="Bot Image"
                       src={Bot}
                       width={36}
                       height={36}
@@ -257,12 +257,8 @@ const NeuraAI = memo(({ userIp }) => {
           </option>
           <option value="Make it Shorter and simpler.">Make Shorter</option>
           <option value="Make it longer. explain it nicely">Make Longer</option>
-          <option value="Write it in a more professional tone.">
-            More Professional
-          </option>
-          <option value="Write it in a more casual and light tone.">
-            More Casual
-          </option>
+          <option value="Write it in a more professional tone.">More Professional</option>
+          <option value="Write it in a more casual and light tone.">More Casual</option>
           <option value="Paraphrase it">Paraphrase</option>
         </select>
 

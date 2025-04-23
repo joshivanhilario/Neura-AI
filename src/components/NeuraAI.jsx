@@ -3,6 +3,7 @@ import { useChat } from "ai/react";
 import Image from "next/image";
 import Markdown from "react-markdown";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
+import { ShimmerButton } from "./magicui/shimmer-button";
 import { Copy, Send, Sparkles } from "lucide-react";
 import { useMode } from "../hooks/useMode";
 import { toast } from 'react-toastify';
@@ -249,7 +250,6 @@ const NeuraAI = memo(({ userIp }) => {
           id="actions-select"
           onChange={(e) => handleSuggestionClick(e.target.value)}
           className="flex-grow [@media(max-width:479px)]:hidden sm:hidden min-w-[180px] max-w-full rounded-lg bg-neutral-800 border border-neutral-700 px-3 py-2 text-neutral-100 focus:ring-1 focus:ring-orange-500 transition"
-          // className="flex-grow sm:hidden min-w-[180px] max-w-full rounded-lg bg-neutral-800 border border-neutral-700 px-3 py-2 text-neutral-100 focus:ring-1 focus:ring-orange-500 transition"
           defaultValue=""
         >
           <option value="" disabled>
@@ -264,40 +264,46 @@ const NeuraAI = memo(({ userIp }) => {
 
         {/* Buttons for Larger Screens */}
         <div className="hidden sm:flex flex-grow gap-2 justify-end">
-          <button
-            onClick={() => handleSuggestionClick("Make it Shorter and simpler.")}
+          <ShimmerButton
+            shimmerColor="#FB8C00"
+            shimmerDuration="3s"
             className="shrink-0 rounded-lg px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
+            onClick={() => handleSuggestionClick("Make it Shorter and simpler.")}
           >
             Make Shorter
-          </button>
-          <button
-            onClick={() => handleSuggestionClick("Make it longer. explain it nicely")}
+          </ShimmerButton>
+          <ShimmerButton
+            shimmerColor="#FB8C00"
+            shimmerDuration="3s"
             className="shrink-0 rounded-lg px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
+            onClick={() => handleSuggestionClick("Make it longer. explain it nicely")}
           >
             Make Longer
-          </button>
-          <button
-            onClick={() =>
-              handleSuggestionClick("Write it in a more professional tone.")
-            }
+          </ShimmerButton>
+          <ShimmerButton
+            shimmerColor="#FB8C00"
+            shimmerDuration="3s"
             className="shrink-0 rounded-lg px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
+            onClick={() => handleSuggestionClick("Write it in a more professional tone.")}
           >
             More Professional
-          </button>
-          <button
-            onClick={() =>
-              handleSuggestionClick("Write it in a more casual and light tone.")
-            }
+          </ShimmerButton>
+          <ShimmerButton
+            shimmerColor="#FB8C00"
+            shimmerDuration="3s"
             className="shrink-0 rounded-lg px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
+            onClick={() => handleSuggestionClick("Write it in a more casual and light tone.")}
           >
             More Casual
-          </button>
-          <button
-            onClick={() => handleSuggestionClick("Paraphrase it")}
+          </ShimmerButton>
+          <ShimmerButton
+            shimmerColor="#FB8C00"
+            shimmerDuration="3s"
             className="shrink-0 rounded-lg px-4 py-2 bg-neutral-800 border border-neutral-700 hover:bg-orange-600 hover:text-white transition-all"
+            onClick={() => handleSuggestionClick("Paraphrase it in humanly langugage")}
           >
             Paraphrase
-          </button>
+          </ShimmerButton>
         </div>
       </div>
 

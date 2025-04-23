@@ -50,6 +50,7 @@ const gemini_models = [
 const NeuraAI = memo(({ userIp }) => {
   const [selectedModel, setSelectedModel] = useState("llama-3.3-70b-versatile");
   const [responseTimes, setResponseTimes] = useState({});
+  const [inputValue, setInputValue] = useState("");
   const messagesEndRef = useRef(null);
   const startTimeRef = useRef(0);
   const [mode, setMode] = useMode();
@@ -85,11 +86,24 @@ const NeuraAI = memo(({ userIp }) => {
 
   const handleSubmit = useCallback(
     (e) => {
+      // e.preventDefault();
+      const contentToSubmit = isListening && transcript ? transcript : input;
+      if (!contentToSubmit.trim()) return;
+  
+      handleInputChange({ target: { value: contentToSubmit } });
       startTimeRef.current = Date.now();
       originalHandleSubmit(e);
+  
+      if (isListening) toggleListening();
     },
-    [originalHandleSubmit]
+    [isListening, transcript, input, handleInputChange, originalHandleSubmit, toggleListening]
   );
+  
+  useEffect(() => {
+    if (!isListening && transcript) {
+      setInputValue(transcript);
+    }
+  }, [isListening, transcript]);
 
   const scrollToBottom = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });

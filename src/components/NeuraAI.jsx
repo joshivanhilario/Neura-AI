@@ -4,7 +4,7 @@ import Image from "next/image";
 import Markdown from "react-markdown";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { ShimmerButton } from "./magicui/shimmer-button";
-import { Copy, Send, Sparkles } from "lucide-react";
+import { Copy, Send, Mic, Sparkles } from "lucide-react";
 import { useMode } from "../hooks/useMode";
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
@@ -334,22 +334,31 @@ const NeuraAI = memo(({ userIp }) => {
             className="w-full resize-y rounded-xl bg-neutral-800 border border-neutral-500 p-4 pr-24 text-sm text-neutral-100 placeholder-neutral-500 focus:ring-2 focus:ring-orange-500"
             placeholder="Enter your prompt here..."
           />
-          <button
-            type="submit"
-            disabled={isLoading}
-            className="absolute bottom-4 right-3 px-4 py-2 rounded-lg bg-orange-600 hover:bg-orange-700 text-white text-sm font-medium flex items-center gap-2 transition-all"
-          >
-            {isLoading ? (
-              <>
-                Generating
-                <Sparkles size={18} className="animate-pulse" />
-              </>
-            ) : (
-              <>
-                Send <Send size={18} />
-              </>
-            )}
-          </button>
+            <div className="absolute bottom-4 right-4 flex items-center space-x-2">
+              <button
+                disabled={isLoading}
+                className="px-4 py-2 rounded-lg bg-orange-600 hover:bg-orange-700 text-white text-sm font-medium flex items-center gap-2 transition-all"
+                type="button"
+              >
+                <Mic size={18} />
+              </button>
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="px-4 py-2 rounded-lg bg-orange-600 hover:bg-orange-700 text-white text-sm font-medium flex items-center gap-2 transition-all"
+              >
+                {isLoading ? (
+                  <>
+                    Generating
+                    <Sparkles size={18} className="animate-pulse" />
+                  </>
+                ) : (
+                  <>
+                    Send <Send size={18} />
+                  </>
+                )}
+              </button>
+            </div>
         </div>
       </form>
     </div>

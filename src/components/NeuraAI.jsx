@@ -331,11 +331,11 @@ const NeuraAI = memo(({ userIp }) => {
           <textarea
             id="chat-input"
             rows={1}
-            value={input}
+            value={isListening ? transcript : input}
             required
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
-            className="w-full resize-y rounded-xl bg-neutral-800 border border-neutral-500 p-4 pr-24 text-sm text-neutral-100 placeholder-neutral-500 focus:ring-2 focus:ring-orange-500"
+            className="w-full resize-y rounded-xl overflow-auto bg-neutral-800 border border-neutral-500 p-4 pr-24 text-sm text-neutral-100 placeholder-neutral-500 focus:ring-2 focus:ring-orange-500"
             placeholder="Enter your prompt here..."
           />
             <div className="absolute bottom-4 right-4 flex items-center space-x-2">

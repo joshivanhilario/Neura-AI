@@ -4,8 +4,9 @@ import Image from "next/image";
 import Markdown from "react-markdown";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { ShimmerButton } from "./magicui/shimmer-button";
-import { Copy, Send, Mic, Sparkles } from "lucide-react";
+import { Copy, Send, Mic, MicOff, Sparkles } from "lucide-react";
 import { useMode } from "../hooks/useMode";
+import { useSpeechRecognition } from "../hooks/useSpeechRecognition";
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useChatbotSelector } from "../utils/chatbotselector";
@@ -53,6 +54,7 @@ const NeuraAI = memo(({ userIp }) => {
   const startTimeRef = useRef(0);
   const [mode, setMode] = useMode();
   const { getApiRoute } = useChatbotSelector();
+  const { transcript, isListening, toggleListening } = useSpeechRecognition();
 
   const {
     messages,
@@ -339,10 +341,11 @@ const NeuraAI = memo(({ userIp }) => {
             <div className="absolute bottom-4 right-4 flex items-center space-x-2">
               <button
                 disabled={isLoading}
+                onClick={toggleListening}
                 className="px-4 py-2 rounded-lg bg-orange-600 hover:bg-orange-700 text-white text-sm font-medium flex items-center gap-2 transition-all"
                 type="button"
               >
-                <Mic size={18} />
+                {isListening ? <MicOff size={18} /> : <Mic size={18} /> }
               </button>
               <button
                 type="submit"

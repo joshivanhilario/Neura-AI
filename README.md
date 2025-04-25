@@ -25,6 +25,7 @@ You can visit the live site here - https://neura-ais.vercel.app/
 - **Tailwind CSS** – A utility-first CSS framework for efficient and responsive styling.
 - **Docker** – Containerization for seamless deployment and scalability.
 - **ShadCN** – Used for beautifully designed, responsive components.
+- **Google Cloud** – Used for Speech-to-Text API using Service Account Integration.
 
 ## Getting Started ⚙️
 ### Prerequisites

